@@ -1,0 +1,12 @@
+<img [src]="storeInfo.img" alt="MainImage" class="mt-5">
+<h1>{{storeInfo.name}}</h1>
+<div class="">
+    <h3>Our Branches :</h3>
+    <ul>
+        <li *ngFor="let item of storeInfo.branche">
+            {{ item }}
+        </li>
+
+    </ul>
+
+</div>

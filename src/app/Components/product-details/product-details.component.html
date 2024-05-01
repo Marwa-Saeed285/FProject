@@ -1,0 +1,11 @@
+<div class="card mt-5" style="width: 18rem;">
+    <img src="{{Product?.imgUrl}}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">{{Product?.name}}</h5>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.
+        and prise is {{Product?.price |currency}}
+      </p>
+      <a  class="btn btn-primary" (click)="GoSomeWhere()">Go</a>
+      <button class="btn btn-danger mx-3" (click)="next()" [disabled]="productId === ids[ids.length - 1]">Next</button>
+    </div>
+  </div>

@@ -1,0 +1,4 @@
+<div class="container pt-5">
+    <button [disabled]="isLogged" class="btn btn-danger" (click)="login()">login</button>
+    <button [disabled]="!isLogged" class="btn btn-success mx-3" (click)="logout()">log out</button>
+</div> 

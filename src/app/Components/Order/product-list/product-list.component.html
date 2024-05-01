@@ -1,0 +1,76 @@
+<div class="container">
+    <!-- <select class="form-select my-5" aria-label="Default select example" 
+    [(ngModel)]="SelectedCat" (change)="FilterProduct()">
+        <option selected>Open this select menu</option>
+        <option *ngFor="let item of categories" value="{{item.id}}">{{item.name}}</option>
+        
+      </select>  -->
+      <button class="btn btn-primary mb-3" >Change</button>
+      <!-- <h5 class="mb-3">SelectedCategory: {{SelectedCat}}</h5> -->
+
+       <h2>{{orderDate|date:'medium'		}}</h2>
+       <h1>{{birthdate  |USDToEG |date :'medium'}}</h1>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Price Eg</th>
+            <th scope="col">Price $</th>
+            <th scope="col">Image</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Enter Count</th>
+            <th scope="col"></th>
+           
+          </tr>
+        </thead>
+        <tbody>
+            <!-- [hidden]="item.id==1" -->
+
+          <!-- <tr *ngFor="let item of products;let i=index;" class="pt-5" [class.d-none]="item.catId!=SelectedCat"
+              [style.background-color]="item.catId==1? 'red':'green'"
+                 trackBy="prdTrack"> -->
+                 <!-- [ngClass]="{'bg-danger':item.id==1,'text-center':item.quantity==0}" -->
+                 <ng-container *ngFor="let item of proProducts;let i=index;">
+
+                     <tr  class="pt-5"  [style.background-color]="item.catId==1? 'red':'green'"
+                     trackBy="prdTrack" *ngIf="item.id!=0" 
+                     [ngStyle]="{'background-color':item.id==1?'red':'yellow',
+                                 'font':item.id==1? '20px':'10px'}"
+                     >
+                     <th scope="row">{{i+1}}</th>
+                     <td >{{item.name}}</td>
+                     <!-- <td>{{item.price | currency:'EUR'}}</td> -->
+                     <td>{{item.price  | currency:'EGP' :'code'}}</td>
+                     <td>{{item.price | currency:'USD': 'symbol'}}</td>
+                     <!-- <td><img LightBox diractiveProp="darkblue" src="{{item.imgUrl}}" /></td> -->
+                     <td><img LightBox="yellow" diractiveProp="green" src="{{item.imgUrl}}" defaultColor="chartreuse" /></td>
+
+                     <td>
+                        <div *ngIf="item.quantity!=0 else qunt">{{item.quantity}}</div>
+                        <ng-template #qunt>Out Of Stock</ng-template>
+                        
+                     </td>
+                     <td><input type="number" LightBox value="20" class="form-control" #CountValue/></td>
+                     <td>
+                      <button class="btn btn-danger" (click)="CalculatePrice(CountValue.value,item.id)">Buy Product</button>
+                      <button class="btn btn-dark mx-3" (click)="ViewDetails(item.id)">View Details</button>
+                    
+                    </td>
+
+                    </tr> 
+                </ng-container>
+          
+        
+        </tbody>
+      </table>
+      <hr>
+      <h3>{{TotalPrice}}</h3>
+      <td><input id="but" type="button" class="btn btn-danger" value="Click Me" #CountValue (click)="event($event)"/></td>
+    </div>   
+    <ng-template #myTemplate>
+        <p>This is a template</p>
+      </ng-template>
+      
+      <div *ngTemplateOutlet="myTemplate">marwa</div>
+      

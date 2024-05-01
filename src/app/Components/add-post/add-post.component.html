@@ -1,0 +1,32 @@
+<div class="container">
+    <div>
+        {{titlePost.errors|json}}
+    </div>
+    <form class="mt-5" (ngSubmit)="Add()" #formvalidation="ngForm">
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">title</label>
+          <input [ngStyle]="{'border-color': titlePost.invalid ? 'red' : 'inhirte '}"
+          type="text" 
+          class="form-control" 
+           pattern="[A-Za-z]{3}" 
+          required
+          #titlePost="ngModel" 
+          name="title" 
+          [(ngModel)]="Newpost.title">
+   
+          <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+        </div>
+        <div [hidden]="titlePost.valid|| titlePost.untouched"
+          class="alert alert-danger">
+            <small [hidden]="!titlePost.errors?.['required']">Required</small><br>
+            <small [hidden]="!titlePost.errors?.['pattern']">Pattern</small>
+        </div>
+        <div class="mb-3">
+          <label for="example" class="form-label">Views</label>
+          <input type="number" class="form-control" name="view" [(ngModel)]="Newpost.views" id="example">
+        </div>
+       
+        <button [disabled]="formvalidation.invalid" type="submit" class="btn btn-primary"  
+               >Submit</button>
+      </form>
+</div>

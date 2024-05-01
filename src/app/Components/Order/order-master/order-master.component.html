@@ -1,0 +1,81 @@
+<h2>Create Your Order</h2>
+<div>
+    <select class="form-select my-5" aria-label="Default select example" 
+    [(ngModel)]="SelectedCat" >
+        <option selected value="0">All</option>
+        <option *ngFor="let item of categories" value="{{item.id}}">{{item.name}}</option>
+        
+      </select> 
+</div>
+<app-product-list [FromOuter]="SelectedCat" (InnerToOuter)="CardTable($event)"></app-product-list>
+
+<!-- <app-product-list [FromOuter]="SelectedCat" (InnerToOuter)="handleDataFromInner($event)"></app-product-list> -->
+<hr>
+<div>
+  <h1 class="text-center py-5">Your Card</h1>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Quantaty</th>
+        <th scope="col">Price</th>
+        <th scope="col">Total Price</th>
+        <th scope="col">Action</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of SelectedCard">
+        <th scope="row">{{item.id}}</th>
+        <td>{{item.name}}</td>
+        <td><input type="number" value="{{item.quantity}}" #inputq
+          (change)="changeTotal(item.id,inputq.value)"
+            class="form-control w-75"></td>
+        <td>{{item.price}}</td>
+        <td>{{item.totalPrice}}</td>
+
+        <td><button class="btn btn-dark">Delete Item</button></td>
+      </tr>
+     
+     
+    </tbody>
+  </table>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<hr>
+<!-- <h3>Total Price For Your Order : {{TotalPrice}}</h3>
+<hr><hr> -->
+<input class="form-control" type="text" #viewInput />
